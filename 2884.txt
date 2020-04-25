@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main { 
+    public static void main(String[] args) {
+	         int h, m, a;
+	        Scanner sc = new Scanner(System.in);
+	        h = sc.nextInt();
+	        m = sc.nextInt();
+	      
+	        if (h == 0)
+	        {
+	            h = 24;
+	            if(m >= 45)
+	            	h = 0;
+	        }
+	        a = h * 60 + m - 45;
+	        System.out.print((a/60) +" "+ (a%60));
+	    
+	}
+}

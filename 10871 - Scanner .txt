@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws Exception {
+//당연하지만 Scanner가 bw,br보다 시간,공간 둘다 비효율적
+                Scanner sc = new Scanner(System.in);
+                int N = sc.nextInt();
+                int X = sc.nextInt();
+		        for(int i = 0 ; i < N ; i++ )
+		        {
+		            int num = sc.nextInt();
+		            if ( num < X )
+		            {
+		                System.out.print(num+" ");
+		            }
+		        }
+		        sc.close();
+		    }
+		    
+}

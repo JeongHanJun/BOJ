@@ -1,0 +1,21 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args)throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = n;
+        int count = 0;
+        sc.close();
+        while(true)
+        {
+            count++;
+            int a = k%10;
+            int b = (k/10) + a;
+            k = 10*a + b%10;
+            if(k == n)
+                break;
+        }
+        System.out.print(count);
+    }
+}

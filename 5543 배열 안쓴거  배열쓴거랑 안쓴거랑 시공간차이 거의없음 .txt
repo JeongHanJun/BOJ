@@ -1,0 +1,23 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int minburger = 2000;
+        int mindrink = 2000;
+        int sum = 0;
+        for( int i = 0 ; i < 3; i++ )
+        {
+            int burger;
+            burger = Integer.parseInt(br.readLine());
+            minburger = Math.min(burger, minburger);
+        }
+        for(int j = 0 ; j < 2 ; j++)
+        {
+            int drink;
+            drink = Integer.parseInt(br.readLine());
+            mindrink = Math.min(drink, mindrink);
+        }
+        System.out.println(minburger+mindrink-50);
+    }
+}

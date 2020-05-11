@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+public class Main{
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        sc.close();
+        int sum = a*b*c;
+        int[] count = new int[10];
+        while(sum > 0)
+        {
+            count[sum % 10]++;			// 1의 자릿수가 나오기 위해 %10 을 이용 count배열의 i번째 원소는 i가 몇번나왔는지에 대해 입력받게 된다. 
+            sum /= 10;
+        }
+        for( int i = 0 ; i < 10 ; i++)
+        {
+            System.out.println(count[i]);
+        }
+        
+      }
+}

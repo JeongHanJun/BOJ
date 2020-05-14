@@ -1,0 +1,34 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine().trim());
+        double[] overavg = new double[n];
+        for( int i = 0 ; i < n ; i++)
+        {
+            String score_entered = br.readLine();           
+            String[] score_str = score_entered.split(" ");  
+            int stu_count = Integer.parseInt(score_str[0]);
+            int[] score = new int[stu_count];
+            int sum = 0;
+            int count = 0;
+            for( int j = 1 ; j < stu_count + 1 ; j++)
+            {
+                score[j-1] = Integer.parseInt(score_str[j]);
+                sum += score[j-1];
+            }
+            double avg = sum / (double) stu_count;
+            for( int k = 0 ; k < stu_count ; k++)
+            {
+                if( score[k] > avg )
+                    count++;
+            }
+            overavg[i] = ( count / (double) stu_count) * 100; 
+            bw.write(String.format("%.3f", overavg[i]) + "%" + "\n");
+        }
+        bw.flush();
+        bw.close();
+    }
+}

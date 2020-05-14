@@ -1,0 +1,39 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+       boolean[] selfnumber = new boolean[10000];			// selfnumber인지 아닌지 판별을 위한 불리언 배열
+      for( int i = 1; i <= 10000 ; i++)					// 문제에서 1만 이하에 대해 출력하라했으므로
+      {
+          if(d_n(i) <= 10000)						// d(n) 이 1만 보다 작으면 ( 즉 n이 셀프숫자이면 )
+              selfnumber[d_n(i)-1] = true;				// 해당 d(n)은 셀프숫자가 된다. 이 부분에 대해 문제에서 줬듯이 셀프숫자가 아닌 n이 주어지면 이n에 대해 무한수열이 생성될 수 있다.
+      }									// ex n을 32 로 주면 d(32) = 32 + 3 + 2 = 37 , d(37) = 37 + 3 + 7 = 47 , d(47) = 47 + 4 + 7 = 58 이런식의 재귀형태로 쭉쭉 나아간다. 결국 쭉쭉가다보면 1만넘는 것은 시간문제
+      for( int j = 0 ; j < 10000 ; j++)
+      {
+          if(!selfnumber[j])						// selfnumber는 배열이니까 j가 0부터 시작(배열의 첫번째 원소부터) selfnumber = true이면 
+              System.out.println(j+1);					// j가 0부터 이니까 그 숫자는 j+1이 될것 selfnumber들을 출력
+      }
+    }
+    public static int d_n(int n) {
+        int sum = n;
+        while(n != 0) {							// n이 생성자가 있는 숫자면 무한로프
+
+            sum += n%10;
+            n /= 10;
+        }
+        return sum;
+    }
+    
+}
+
+// 어려운 문제라서 복기하면서 다시 복습
+// selfnuber 는 자연수 n에 대해 d(n) = n + (n의 자릿수들) 로 정의한다
+// ex) d(75) = 75 + 7+ 5 = 87 이렇게 된다
+// 이 때 n은 d(n) 의 생성자라고 정의한다. 위 예제에서 75 는 87의 생성자이다.
+// 자연수 n에 대해 d(n) = n + (n의 자릿수들) 이므로 무조건 d(n) > n 이다. 
+// 단, 생성자가 없는 숫자를 selfnumber 라고 정의한다.
+// selfnumber는 생성자가 존재하지 않으므로 d(1) = 1 + 1 = 2 가 되지만 d(n) = 1이 될수는 없다.( 0 + 1 이런식으로 나올수가 없다.)
+// 위에서 보듯이 2는 생성자가 존재(1이 존재) 하지만 1은 생성자가 존재하지 않는다. 마찬가지로 d(n) = 3이 될수는 없다. (0+3 or 1+2 둘다 불가능)
+// 따라서, 1 , 3 이런 숫자를 selfnumber 라고 한다. 
+// 100보다 작은 셀프숫자는 13개 존재하고
+// 문제는 10000보다 작거나 같은 셀프넘버를 한줄에 하나씩 출력하는 프로그램을 작성하시오 (반복문안에 출력문 넣어서 쫙쫙 출력하라는 뜻)

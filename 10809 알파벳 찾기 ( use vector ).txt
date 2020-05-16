@@ -1,0 +1,23 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = br.readLine();
+        Vector<Integer> check = new Vector<>();
+        for( int i = 0 ; i < 26; i++)
+        {
+            check.add(-1);					// »ðÀÔ
+        }
+        for( int index = 0; index < input.length() ; index++)
+        {
+            int temp_index = (int) input.charAt(index) - 97;
+            if( check.elementAt(temp_index) == -1)
+                check.set(temp_index, index);			// ¼öÁ¤
+        }
+        for( int j = 0 ; j < check.size() ; j++)
+        {
+            System.out.print(check.elementAt(j) + " ");
+        }
+    }
+}

@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String inputline = br.readLine();
+        String[] input = inputline.split(" ");
+        int num1 = Integer.parseInt(input[0]);
+        int num2 = Integer.parseInt(input[1]);
+        int a = num1 / 100;    
+        int b = (num1 / 10) % 10;
+        int c = num1 % 10;
+        int tempnum1 = 100*c + 10*b + a;
+        int d = num2 / 100;    
+        int e = (num2 / 10) % 10;
+        int f = num2 % 10;
+        int tempnum2 = 100*f + 10*e + d;
+        if(tempnum1 > tempnum2)
+            System.out.println(tempnum1);
+        else
+            System.out.println(tempnum2);
+            
+    }
+}

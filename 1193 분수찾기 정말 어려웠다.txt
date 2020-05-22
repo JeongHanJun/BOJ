@@ -1,0 +1,31 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int count = 0;                          // 앞에 있는 분수의 갯수 count
+        int up = 0;                             // 분자
+        int down = 0;                           // 분모
+        for( int i = 1 ; i < n ; i++)
+        {
+            if( n > count && n <= count+i)      // 예시로 n 이 17이면 1+2+3+4+5+2 인데 이경우 count의 값은 1+2+3+4+5 이므로 n은 count보다 크고, 최대 count+i 만큼의 범위를 가진다.  
+            {
+                if( i % 2 == 0)                 // 짝수의 대각선 위-아래순
+                {
+                    down = i + 1 - (n - count); // 1~n-1까지 다 더하고 그 수를 n에서 뺀다면 해당 대각선의 몇번째에 있는지 알 수 있다.
+                    up = n - count;
+                }
+                else                            // 홀수의 대각선 아래-위순
+                {
+                    down = n - count;
+                    up = i + 1 - ( n - count);
+                }
+                break;
+            }
+            count += i;
+        }
+        sc.close();
+        System.out.println(up+"/"+down);
+    } 
+}

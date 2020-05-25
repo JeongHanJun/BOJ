@@ -1,0 +1,30 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    static int check(int n) {
+        int k = 0;
+        if(n == 1)
+                return 0;
+        for( int j = 2 ; j < n ; j++)
+        {
+            if( n % j == 0)
+                k++;
+        }
+        if( k == 0)
+            return 1;
+        else
+            return 0;
+        
+    }
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int count = 0;
+        for( int i = 0 ; i < t ; i++)
+        {
+            int n = sc.nextInt();
+            count += check(n);
+        }
+        System.out.print(count);
+    }
+}

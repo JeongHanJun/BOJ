@@ -1,0 +1,11 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int R = sc.nextInt();
+        System.out.printf("%.6f\n", (double) R * R * 3.14159265358);
+        System.out.printf("%.6f\n", (double) 2 * R * R);
+        sc.close();
+    }
+}

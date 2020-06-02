@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    static int n, count = 0;
+    static StringBuilder sb = new StringBuilder();
+    static void hanoi(int k, int src, int mid, int dest) {
+        count++;
+        if(k == 1)
+        {
+            sb.append(src+" "+dest+"\n");
+            return;
+        }
+        else
+        {
+            hanoi(k-1, src, dest, mid);
+            sb.append(src+" "+dest+"\n");
+            hanoi(k-1, mid, src, dest);
+        }
+    }
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int k = Integer.parseInt(br.readLine());
+        hanoi(k, 1, 2, 3);
+        System.out.println(count);
+        System.out.println(sb);
+    }
+}

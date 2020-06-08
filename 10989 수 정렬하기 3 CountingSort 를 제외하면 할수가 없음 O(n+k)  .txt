@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+        for( int i = 0 ; i < n ; i++)
+        {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+        int[] res = CountingSort(arr);
+        for( int k : res)
+            bw.write(k+"\n");
+        br.close();
+        bw.close();
+    }
+    public static int[] CountingSort(int[] arr) {
+        int max = 0;
+        for( int i = 0 ; i < arr.length ; i++)
+        {
+            if( max < arr[i] )
+                max = arr[i];
+        }
+        int[] res = new int[arr.length];
+        int[] cnt = new int[max+1];
+        for(int i : arr)
+            cnt[i]++;
+        for( int i = 1; i < cnt.length ; i++)
+            cnt[i] += cnt[i-1];
+        for( int i = arr.length-1 ; i >= 0 ; i--)
+            res[--cnt[arr[i]]] = arr[i];
+        return res;
+    }
+}

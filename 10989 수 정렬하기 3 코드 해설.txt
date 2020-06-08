@@ -1,0 +1,29 @@
+기본적으로 정렬 알고리즘은 수의 범위가 커진다면, 시간복잡도가 커진다.(입력받고 그것을 정렬하는데에는 O(nlogn) 예상)
+이를 O(n) 급으로 낮출수 있는것이 해쉬정렬 카운트정렬 기수정렬등이 있는데
+이 문제는 카운팅정렬
+방법
+정렬할 배열에 입력을 받는 것은 모든 코드가 일치
+입력받은 숫자들에 대한 배열에서 최댓값을 구함
+0~최댓값 까지 각 숫자가 몇번 등장하는지에 대한 횟수를 카운팅
+자연수라면 0이 아니고 1이어도된다. 이 문제는 0부터라고 했으므로
+카운팅을 바탕으로 누적 카운팅을 한다.
+누적 카운팅은 정렬될 배열의 인덱스가 된다.
+
+  public static int[] CountingSort(int[] arr) {
+        int max = 0;				// 최대값 max
+        for( int i = 0 ; i < arr.length ; i++)
+        {
+            if( max < arr[i] )			// 최대값 설정
+                max = arr[i];
+        }
+        int[] res = new int[arr.length];	// res 는 result 마지막에 결과의 배열
+        int[] cnt = new int[max+1];		// 카운팅을 저장할 배열
+        for(int i : arr)
+            cnt[i]++;				// 배열의 원소의 갯수
+        for( int i = 1; i < cnt.length ; i++)
+            cnt[i] += cnt[i-1];			// 원소의 누적 갯수 저장
+        for( int i = arr.length-1 ; i >= 0 ; i--)
+            res[--cnt[arr[i]]] = arr[i];	// cnt배열을 이용한 정렬 --연산자 써야 빠릅니다.
+        return res;
+    }
+}

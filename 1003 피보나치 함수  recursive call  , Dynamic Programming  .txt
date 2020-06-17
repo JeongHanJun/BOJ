@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	static int t,n;
+	static int check[] = new int[41]; 
+	static int dp[][];
+	public static int fibonacci( int n ) {
+	    if (n == 0) 
+        {	        
+	        return 0;
+	    } 
+        else if (n == 1) 
+        {
+	        return 1;
+	    }
+        
+	    if( check[n] !=0 ) 
+        {  
+	    	return check[n];
+	    }
+	    else 
+        {	
+	    	return check[n] = fibonacci(n-1) + fibonacci(n-2);      
+	    }
+	}
+	public static void main(String[] args) throws IOException  {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		t= Integer.parseInt(br.readLine());
+		dp = new int [41][2];
+		dp[0][0]=1;
+        dp[0][1]=0; 
+        dp[1][0]=0;
+        dp[1][1]=1;
+        
+		for( int i = 0 ; i < t ; i++ ) 
+        {
+			n = Integer.parseInt(br.readLine());
+			fibonacci(n);
+			for( int j = 2 ; j <= n ; j++ ) 
+            { 
+				dp[j][0] = dp[j-1][0] +dp[j-2][0]; 
+		    	dp[j][1] = dp[j-1][1] +dp[j-2][1];
+			}
+			System.out.println(dp[n][0]+" "+dp[n][1]);
+		}
+	}
+}

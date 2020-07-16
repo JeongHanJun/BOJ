@@ -1,0 +1,41 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	static int n;
+	static int cnt;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine());
+        int[] x = new int[n+1];
+        for( int i = 1 ; i <= n; i ++)
+        {
+        	x[1] = i;	// (x,i)	
+        	dfs(x, 1);	// search for each cases of x=1 , y = 1~n
+        }
+        System.out.println(cnt);
+    }
+    static void dfs( int[] x, int y) {
+    	if(y == n)
+    		cnt++;
+    	else
+    	{
+    		for( int i = 1; i <= n ; i++)
+    		{
+    			x[y+1] = i;
+    			if(Isok(x, y+1))
+    				dfs(x, y+1);
+    		}
+    	}
+    	
+    }
+    static boolean Isok(int[] x, int y) {
+    	for( int i = 1; i < y; i++)
+    	{
+    		if(x[i] == x[y])
+    			return false;
+    		if(Math.abs(i-y) == Math.abs(x[i] - x[y]))
+    			return false;
+    	}
+    	return true;
+    }
+}

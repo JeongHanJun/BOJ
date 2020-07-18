@@ -1,0 +1,41 @@
+// 문제 주소 : https://programmers.co.kr/learn/courses/30/lessons/42840
+import java.util.*;
+class Solution {
+    public int[] solution(int[] answers) {
+        int[] answer = {};
+        int[] cnt = new int[3];
+        int max = 0; // count max
+        // 1 2 3 4 5 / 1 2 3 4 5 / 1 2 3 4 5 /       5개 단위 반복 
+        // 2 1 2 3 2 4 2 5 / 2 1 2 3 2 4 2 5 /       8개 단위 반복  
+        // 3 3 1 1 2 2 4 4 5 5 / 3 3 1 1 2 2 4 4 5 5 10개 단위 반복
+        ArrayList<Integer> al = new ArrayList<Integer>();
+	// 처음에는 List를 안쓰고 풀고 싶었다. List에 대해서 자세히 알지 못해서
+	// 그러나 배열을 이용해서 구현하면 마지막에 answer에 값을 넣고 출력하는 부분에서 한계가 있어서
+	// 60점을 맞게 되었고 그냥 List를 쓰게 됬다. 어려운 메소드는 안써도 가능해서 List그냥 사용했다.
+        int[] p1 = {1, 2, 3, 4, 5};
+        int[] p2 = {2, 1, 2, 3, 2, 4, 2, 5};
+        int[] p3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        for( int i = 0 ; i < answers.length ; i++)
+        {
+            if(answers[i] == p1[i%5] )
+                cnt[0]++;
+            if(answers[i] == p2[i%8] )
+                cnt[1]++;
+            if(answers[i] == p3[i%10])
+                cnt[2]++;
+        }
+        max = Math.max( Math.max(cnt[0], cnt[1]), cnt[2] );	// 이 부분 Math.max 사용 하지 않으면 4가지 (다같음 ,3개중 두개 비교를 3번) 에 대해 하드코딩 해야해서 불편함
+        if( max == cnt[0])
+            al.add(1);
+        if( max == cnt[1])
+            al.add(2);
+        if( max == cnt[2])
+            al.add(3);
+        answer = new int[al.size()];	// answer.length = al.size()
+        for( int i = 0 ; i < al.size() ; i++)
+        {
+            answer[i] = al.get(i);	// 이 부분 때문에 list를 사용했다고 봐도 된다.
+        }
+        return answer;
+    }
+}

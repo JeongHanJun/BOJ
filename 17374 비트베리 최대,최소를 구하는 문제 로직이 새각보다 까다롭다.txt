@@ -1,0 +1,34 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		for( int i = 0 ; i < t ; i++)
+		{
+			StringTokenizer st = new StringTokenizer(br.readLine()," ");
+			int p = Integer.parseInt(st.nextToken());
+			int q = Integer.parseInt(st.nextToken());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			int c = Integer.parseInt(st.nextToken());
+			int d = Integer.parseInt(st.nextToken());
+			// 비트,코인중 적은 것의 개수를 최대화 해야 함
+			int btc = 0 ;					// berry to coin
+			int res = 0;
+			if( q >= c )					// if berrys can be changed into coins 
+				btc += d * (q / c);			// 1개당 q/c 이므로 d개 를 곱해서  btc에 추가
+			int temp1 = (p - btc) / (a + b);
+			int temp2 = temp1;
+			
+			res = Math.min(p - a * temp2, btc + b * temp2);
+			temp2 = temp1 - 1;
+			
+			res = Math.max(res, Math.min(p - a * temp2, btc + b * temp2));
+			temp2 = temp1 + 1;
+			
+			res = Math.max(res, Math.min(p - a * temp2, btc + b * temp2));
+			System.out.println(res);
+		}
+	}
+}

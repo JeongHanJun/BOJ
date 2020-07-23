@@ -1,0 +1,85 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int a = n % 14;
+		int b = n / 14;
+		if( a == 3 || a == 7 || a == 11)
+		{
+			if( b >= 3)
+			{
+				System.out.print("tu+ru*"+(b+2));
+				return;
+			}
+			else if ( b == 2)
+			{
+				System.out.print("tururururu");
+				return;
+			}
+			else if ( b == 1)
+			{
+				System.out.print("turururu");
+				return;
+			}
+			System.out.print("tururu");
+			return;
+		}
+		if( a == 4 || a == 8 || a == 12)
+		{
+			if(b >= 4)
+			{
+				System.out.print("tu+ru*"+(b+1));
+				return;
+			}
+			else if ( b == 3)
+			{
+				System.out.print("tururururu");
+				return;
+			}
+			else if ( b == 2)
+			{
+				System.out.print("turururu");
+				return;
+			}
+			else if ( b == 1)
+			{
+				System.out.print("tururu");
+				return;
+			}
+			System.out.print("turu");
+			return;
+		}
+		else if(a == 1 || a == 13)
+		{
+			System.out.print("baby");
+			return;
+		}
+		else if ( a == 2 || a == 0)
+		{
+			System.out.print("sukhwan");
+			return;
+		}
+		else if ( a == 5)
+		{
+			System.out.print("very");
+			return;
+		}
+		else if ( a == 6)
+		{
+			System.out.print("cute");
+			return;
+		}
+		else if ( a == 9)
+		{
+			System.out.print("in");
+			return;
+		}
+		else if ( a == 10)
+		{
+			System.out.print("bed");
+			return;
+		}
+	}
+}

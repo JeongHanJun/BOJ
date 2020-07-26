@@ -1,0 +1,80 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	static int n;
+	static int nums[], op[];
+	static int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+	static void dfs(int num, int idx)
+	{
+		if(idx == n)
+		{
+			if(num > max)
+				max = num;
+			if(num < min)
+				min  = num;
+			return;
+		}
+		int result = 0 ;
+		for( int j = 0 ; j < 4 ; j++)
+		{
+			if(op[j] != 0)	// opji] exists
+			{
+				op[j]--;
+				switch(j) 
+				{
+				case 0:
+				{
+					result = num + nums[idx];
+					break;
+				}
+				case 1:
+				{
+					result = num - nums[idx];
+					break;
+				}
+				case 2:
+				{
+					result = num * nums[idx];
+					break;
+				}
+				case 3:
+				{
+					// c++14 의 기준을 따른다. 양수로 바꾼뒤 몫을 취하고  그 몫을 름수로 바꾼것
+					if(num < 0 && nums[idx] > 0)	// 음수를 양수로 나눌떄
+					{
+						num *= -1;	// 양수로 바꾸고
+						result = num / nums[idx];	// 몫을 취하고
+						result *= -1;	// 그 몫을 음수로 바꾼다.
+					}
+					else	// 양수간의 나눗셈
+					{
+						result = num / nums[idx];
+					}
+					break;
+				}
+				}
+				dfs(result, idx+1);
+				op[j]++;
+			}
+		}
+		
+	}
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		n = Integer.parseInt(br.readLine());
+		nums = new int[n];
+		op = new int[4];
+		StringTokenizer st = new StringTokenizer(br.readLine()," ");
+		for( int i = 0 ; i < n ; i++)
+		{
+			nums[i] = Integer.parseInt(st.nextToken());
+		}
+		st = new StringTokenizer(br.readLine()," ");
+		for( int i = 0 ; i < 4 ; i++)
+		{
+			op[i] = Integer.parseInt(st.nextToken());
+		}
+		dfs(nums[0], 1);
+		System.out.print(max+"\n"+min);
+	}
+}

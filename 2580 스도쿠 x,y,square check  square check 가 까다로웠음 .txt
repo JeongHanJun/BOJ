@@ -1,0 +1,96 @@
+import java.util.*;
+import java.io.*;
+class Coord{
+	int x;
+	int y;
+	public Coord(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+}
+public class Main {
+	static int board[][] = new int[9][9];	// 스도쿠 배열은 정적, 정해진 크기
+	static ArrayList<Coord> list = new ArrayList<>();
+	static StringBuilder sb = new StringBuilder();
+	static void dfs(ArrayList<Coord> temp, int idx) {
+		if(idx == list.size())	// 종료조건
+		{
+			for( int i = 0 ; i < 9 ; i++)
+			{
+				for( int j = 0 ; j < 9 ; j++)
+				{
+					sb.append(board[i][j]+" ");
+				}
+				sb.append("\n");
+			}
+			System.out.print(sb);
+			System.exit(0);
+		}
+		// 종료조건이 아니라면 해당 칸이 적합한지 탐색
+		for( int i = 1 ; i <= 9 ; i++)
+		{
+			if(Xisok(temp, idx, i) == true && Yisok(temp, idx, i) == true && Sqisok(temp, idx, i) == true)	// X, Y, Square
+			{
+				board[temp.get(idx).x][temp.get(idx).y] = i;	// 넣어보고
+				dfs(temp, idx+1);
+			}
+			if(i == 9)		// 번호 지우고 새로운 스도쿠판
+				board[temp.get(idx).x][temp.get(idx).y] = 0;
+		}
+	}
+	static boolean Xisok(ArrayList<Coord> temp, int idx, int k)
+	{
+		for( int i = 0 ; i < 9 ; i++)
+		{
+			if(temp.get(idx).y == i)
+				continue;
+			if(board[temp.get(idx).x][i] == k)
+				return false;
+		}
+		return true;
+	}
+	static boolean Yisok(ArrayList<Coord> temp, int idx, int k)
+	{
+		for( int i = 0 ; i < 9 ; i++)
+		{
+			if(temp.get(idx).x == i)
+				continue;
+			if(board[i][temp.get(idx).y] == k)
+				return false;
+		}
+		return true;
+	}
+	static boolean Sqisok(ArrayList<Coord> temp, int idx, int k)
+	{
+		int xsize = list.get(idx).x / 3;	// 이 정사각형이 좌표에 따라 다르므로 해당좌표를 3으로 나는 몫
+		int ysize = list.get(idx).y / 3;
+		xsize *= 3;
+		ysize *= 3;
+		for( int i = xsize ; i < xsize+3 ; i++)
+		{
+			for( int j = ysize ; j < ysize+3 ; j++)
+			{
+				if( i == list.get(idx).x && j == list.get(idx).y)
+					continue;
+				if(board[i][j] != 0 && board[i][j] == k)
+					return false;
+			}
+		}
+		return true;
+	}
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		for( int i = 0 ; i < 9 ; i++)
+		{
+			st = new StringTokenizer(br.readLine()," ");
+			for( int j = 0 ; j < 9 ; j++)
+			{
+				board[i][j] = Integer.parseInt(st.nextToken());
+				if(board[i][j] == 0)
+					list.add(new Coord(i,j));
+			}
+		}
+		dfs(list,0);
+	}
+}

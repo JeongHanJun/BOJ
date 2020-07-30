@@ -1,0 +1,25 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine()," ");
+		int nums[] = new int[n];
+		int dp[] = new int[n];
+		for( int i = 0 ; i < n ; i++)
+		{
+			nums[i] = Integer.parseInt(st.nextToken());
+		}
+		// 끝나면 max에는 최대값이 포함되있음
+		dp[0] = nums[0];
+		int max = nums[0];
+		for( int i = 1 ; i < n ; i++)
+		{// 담기전까지의 최대연속값, 담는거가 제일 클떄   nums[i]를 담고나서 최대가 줄었는데 아닌지
+			dp[i] = Math.max(nums[i], dp[i-1]+nums[i]);	// 새로운 원소 넣었을때 올라가는지 줄어드는지
+			max = Math.max(dp[i], max);	// 그게 이전꺼보다 큰지
+			// max((dp[i-1],max), nums[i], dp[i-1+nums[i])  
+		}
+		System.out.print(max);
+	}
+}

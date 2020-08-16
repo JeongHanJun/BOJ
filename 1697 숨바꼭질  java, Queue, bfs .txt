@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+	static int n, k, i, v, temp = 0, m = 100001;
+	static int time[] = new int[m]; 
+	static int dir[] = {1,-1};
+	static Queue<Integer> q = new LinkedList<>();
+	static void bfs(int pos) {
+		q.offer(pos);
+		while ( !q.isEmpty() )
+		{
+			v = q.poll();
+			if( v == k )
+			{
+				System.out.print(time[v]);
+				return;
+			}
+			if( v >= 1 && time[v-1] == 0)
+			{
+				q.offer(v-1);
+				time[v-1] = time[v] + 1;
+			}
+			if( v+1 < time.length && time[v+1] == 0)
+			{
+				q.offer(v+1);
+				time[v+1] = time[v] + 1;
+			}
+			if( v*2 < time.length && time[2*v] == 0)
+			{
+				q.offer(2*v);
+				time[2*v] = time[v] + 1;
+			}
+		}
+	}
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		k = Integer.parseInt(st.nextToken());
+		time[n] = 0;
+		bfs(n);
+	}
+}

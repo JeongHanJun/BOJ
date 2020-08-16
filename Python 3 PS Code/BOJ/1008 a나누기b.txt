@@ -1,0 +1,7 @@
+a, b = input().split()
+print(int(a)/int(b))
+'''
+	a, b = map(int, input().split())
+	print(a/b)
+	# 이 코드도 가능 map은 둘을 mapping 하는 함수 사전 자료형을 공부할때 보	게될 것 
+'''

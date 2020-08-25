@@ -1,0 +1,29 @@
+'''
+100 99 98
+100 97 92
+63 89 63
+99 99 99
+89 97 98
+이렇게 입력을 받는데, 3개의 열(속성 및 요소) 에 대해 n개의 행으로 이루어진다
+[[100, 100, 63, 99, 89], [99, 97, 89, 99, 97], [98, 92, 63, 99, 98]]
+이런식으로 리스트 안의 리스트로 구성하여
+각 리스트에 대해서 비교를 수행한 후 합 값을 더하면 되겠다.
+'''
+# 코드
+n = int(input())
+nums = [ [], [], [] ]
+sum = []
+for i in range(n):
+    n1 , n2 , n3 = map(int, input().split())
+    nums[0].append(n1)
+    nums[1].append(n2)
+    nums[2].append(n3)
+# 입력
+for k in range(n):    
+    temp = 0
+    for j in range(3):
+        if nums[j].count(nums[j][k]) == 1:	# List Count 함수 이용
+            temp += nums[j][k]
+    sum.append(temp)
+for i in range(n):
+    print(sum[i])

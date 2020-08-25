@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		StringTokenizer st;
+		int[][] nums = new int[n][3];
+		for( int i = 0 ; i < n ; i++)
+		{
+			st = new StringTokenizer(br.readLine());
+			for( int j = 0 ; j < 3 ; j++)
+			{
+				nums[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		for( int i = 0 ; i < n; i++)
+		{
+			for( int j = 0 ; j < 3 ; j++)
+			{
+				boolean check = false;
+				for( int ob = 0 ; ob < n ; ob++)
+				{
+					if( i != ob && nums[i][j] == nums[ob][j])
+					{
+						check = true;
+						nums[ob][j] = 0;
+					}
+				}
+				if(check == true)
+					nums[i][j] = 0;
+			}
+			System.out.println(nums[i][0]+nums[i][1]+nums[i][2]);
+		}
+	}
+}

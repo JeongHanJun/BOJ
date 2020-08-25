@@ -1,0 +1,16 @@
+'''
+두 수를 Enter 단위로 입력받을때는 입력을 두번 받아야 함
+한줄에서 ' ' 단위 구분이면 map함수 이용 n1, n2 = map(int, input().split())
+'''
+n1 = int(input())
+n2 = int(input())
+if n1 > 0:
+    if n2 > 0:
+        print(1)
+    else:
+        print(4)
+else:
+    if n2 > 0:
+        print(2)
+    else:
+        print(3)

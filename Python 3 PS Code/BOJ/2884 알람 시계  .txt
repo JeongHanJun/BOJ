@@ -1,0 +1,13 @@
+'''
+map 함수를 쓰지 않으면 int(input().split()) 해도 입력받을수 없다는 점
+map함수를 사용해야 여러개의 숫자를 입력받을 수 있다는 점
+m에 따라 h에 따라 상황에 맞게 조정해서 출력하면 오케이
+'''
+h,m = map(int, input().split())
+if h == 0 and m < 45:
+    h = 24
+if m >= 45:
+    print(h, m-45)
+else:
+    print(h-1, m+15)
+

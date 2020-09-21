@@ -1,0 +1,17 @@
+파이썬 3 을 활용한 간단한 프로그램 : Union Images
+
+GUI Programming 을 통해
+여러개의 이미지를 받으면
+이를 하나로 묶어서 세로로 길게 만드는 프로그램
+
+ex) image1  image2  image3  image4  image5
+
+->
+
+image1
+image2
+image3
+image4
+image5
+
+이렇게 세로로 길게 합침

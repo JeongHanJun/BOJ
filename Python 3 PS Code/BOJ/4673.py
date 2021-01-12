@@ -30,13 +30,13 @@ for i in range(1, 10001):
 '''
 
 nums = [True] * 10040
-for i in range(1, 101):
+for i in range(1, 10001):
     temp = i
     while temp:
         i += temp % 10
         temp //= 10
     nums[i] = False
-for i in range(1, 101):
+for i in range(1, 10001):
     if nums[i]:
         print(i)
 

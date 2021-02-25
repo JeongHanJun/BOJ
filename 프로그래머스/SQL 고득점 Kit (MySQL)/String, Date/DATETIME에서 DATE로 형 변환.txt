@@ -1,0 +1,5 @@
+-- 코드를 입력하세요
+-- animal_ins 테이블에 등록된 모드 레코드에 대해 각 동물들의 id, name, 들어온날짜 를 조회, id순으로 조회
+select animal_id, name, date_format(datetime, '%Y-%m-%d') as 날짜
+from animal_ins
+order by animal_id

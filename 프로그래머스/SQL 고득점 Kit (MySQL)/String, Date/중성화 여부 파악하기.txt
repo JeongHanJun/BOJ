@@ -1,0 +1,8 @@
+-- 코드를 입력하세요
+-- 중성화된 동물은 sex_upon_intake 컬럼에 'neutered' 또는 'Spayed' 라는 단어가 들어가있다.
+-- 동물의 id, name, 중성화 여부를 id순으로 조회  이떄 중성화가 되있으면'O' 아니면 'X'로 표시
+SELECT animal_id, name, 
+case when sex_upon_intake like '%Neutered%' or sex_upon_intake like '%Spayed%'
+then 'O' else 'X' end as '중성화'
+from animal_ins
+order by animal_id

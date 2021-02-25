@@ -1,0 +1,6 @@
+-- 코드를 입력하세요
+-- 동물 보호소에 들어온 동물중 이름이 lucy, ella, pickle, rogan, sabrina, mitty 인 동물의 id, name, 성별 및 중성화여부를 조회
+SELECT animal_id, name, sex_upon_intake
+from animal_ins
+where name = 'Lucy' or name = 'Ella' or name = 'Pickle' or  name = 'Rogan' or name = 'Sabrina' or name = 'Mitty'
+order by animal_id

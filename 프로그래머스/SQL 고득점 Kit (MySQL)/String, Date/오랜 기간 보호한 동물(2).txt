@@ -1,0 +1,13 @@
+-- 코드를 입력하세요
+-- 입양간 동물 중 보호기간이 가장 길었던 동물 두마리의 id, name을 조회, 보호기간이 긴 순으로 조회
+SELECT a.animal_id, a.name
+from animal_ins a join animal_outs b on a.animal_id = b.animal_id
+order by datediff(a.datetime , b.datetime)
+limit 2
+
+-- join 안 쓰고 하는 방법
+select a.animal_id, a.name
+from animal_ins a, animal_outs b
+where a.animal_id = b.animal_id
+order by datediff(a.datetime, b.datetime)
+limit 2

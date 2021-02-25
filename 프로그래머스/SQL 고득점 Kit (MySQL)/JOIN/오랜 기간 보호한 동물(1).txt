@@ -1,0 +1,6 @@
+-- 입양을 못 간 동물중 오래 보호소에 있던 동물 3마리의 name과 datetime
+SELECT a.name, a.datetime
+from animal_ins a left join animal_outs b on a.animal_id = b.animal_id
+where b.animal_id is null
+order by a.datetime
+limit 3

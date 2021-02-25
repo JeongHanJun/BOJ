@@ -1,0 +1,8 @@
+-- 코드를 입력하세요
+-- 보호소에서 중성화 수술을 거친 동물 정보를 알아보려 한다.
+-- 보호소를 들어올떄는 중성화되지 않았지만,  ins에는 false, outs에는 true
+-- 보호소를 나갈때에는 중성화된 동물의 id, type, name을 조호하고 id순으로 조회
+SELECT a.animal_id, a.animal_type, a.name
+from animal_ins a right join animal_outs b on a.animal_id = b.animal_id
+where a.sex_upon_intake != b.sex_upon_outcome
+order by a.animal_id

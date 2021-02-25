@@ -1,0 +1,16 @@
+# 풀이 1번 어려운 풀이
+with recursive hour as(
+select 0 as h
+union all 
+select h+1 from hour where h < 23)
+
+select h as hour, coalesce( count(animal_id), 0) as count
+from hour left join animal_outs ani on hour.h = hour(ani.datetime)
+group by hour.h
+
+# 풀이 2번 로컬 변수 사용
+set @hour := -1;
+select (@hour := @hour + 1) as hour,
+(select count(*) from animal_outs where hour(datetime) = @hour) as count
+from animal_outs
+where @hour < 23

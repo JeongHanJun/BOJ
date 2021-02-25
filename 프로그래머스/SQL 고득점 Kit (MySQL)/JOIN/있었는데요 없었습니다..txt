@@ -1,0 +1,10 @@
+-- 보호시작일보다 입양일이 더 빠른 동물의 아이디와 이름을 조회하는 sql문을 작성
+-- 결과는 보호 시작일이 빠른순으로 조회;
+-- animal_ins 가 보호소 에 들어온 동물의 정보
+-- animal_outs 가 입양 보낸 동물의 정보
+-- 관리자의 실수로 입양일이 잘못 기록됨
+SELECT b.animal_id, b.name
+from animal_ins a join animal_outs b
+on b.animal_id = a.animal_id
+where a.datetime > b.datetime
+order by a.datetime
